@@ -73,12 +73,12 @@ export default function UserForm({
 					control={form.control}
 					name='login'
 					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Логин</FormLabel>
-							<FormControl>
+						<FormItem name='login'>
+							<FormLabel name='login'>Логин</FormLabel>
+							<FormControl name='login'>
 								<Input placeholder='ivanov' {...field} />
 							</FormControl>
-							<FormMessage />
+							<FormMessage name='login' />
 						</FormItem>
 					)}
 				/>
@@ -86,12 +86,12 @@ export default function UserForm({
 					control={form.control}
 					name='email'
 					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Email</FormLabel>
-							<FormControl>
+						<FormItem name='email'>
+							<FormLabel name='email'>Email</FormLabel>
+							<FormControl name='email'>
 								<Input type='email' placeholder='user@example.com' {...field} />
 							</FormControl>
-							<FormMessage />
+							<FormMessage name='email' />
 						</FormItem>
 					)}
 				/>
@@ -99,10 +99,10 @@ export default function UserForm({
 					control={form.control}
 					name='role'
 					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Роль</FormLabel>
+						<FormItem name='role'>
+							<FormLabel name='role'>Роль</FormLabel>
 							<Select value={field.value} onValueChange={field.onChange}>
-								<FormControl>
+								<FormControl name='role'>
 									<SelectTrigger>
 										<SelectValue placeholder='Выберите роль' />
 									</SelectTrigger>
@@ -112,7 +112,7 @@ export default function UserForm({
 									<SelectItem value='employee'>Сотрудник</SelectItem>
 								</SelectContent>
 							</Select>
-							<FormMessage />
+							<FormMessage name='role' />
 						</FormItem>
 					)}
 				/>
@@ -120,12 +120,12 @@ export default function UserForm({
 					control={form.control}
 					name='department'
 					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Департамент</FormLabel>
-							<FormControl>
+						<FormItem name='department'>
+							<FormLabel name='department'>Департамент</FormLabel>
+							<FormControl name='department'>
 								<Input placeholder='IT, HR...' {...field} />
 							</FormControl>
-							<FormMessage />
+							<FormMessage name='department' />
 						</FormItem>
 					)}
 				/>
