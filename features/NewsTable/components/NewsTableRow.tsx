@@ -7,7 +7,8 @@ import {
 	DropdownMenuTrigger,
 } from '../../../components/ui/dropdown-menu';
 import { TableCell, TableRow } from '../../../components/ui/table';
-import { useDeleteNewsMutation } from '../../../lib/store/newsApi';
+import { useDeleteNews } from '../../../features/NewsForm/api/useNewsApi';
+import { useNews } from '../../../features/NewsForm/api/useNewsApi';
 import { INews } from '../../../types/News';
 
 interface NewsTableRowProps {
@@ -21,7 +22,21 @@ export default function NewsTableRow({
 	setSelectedNews,
 	setOpen,
 }: NewsTableRowProps) {
-	const [deleteNews] = useDeleteNewsMutation();
+	const { deleteNews } = useDeleteNews();
+	const { mutate } = useNews();
+
+	const handleDelete = async () => {
+		if (confirm('Вы уверены, что хотите удалить эту новость?')) {
+			try {
+				await deleteNews(news._id!);
+				// Обновляем кэш после удаления
+				mutate();
+			} catch (error) {
+				console.error('Ошибка удаления новости:', error);
+				alert('Ошибка удаления новости');
+			}
+		}
+	};
 
 	const formatDate = (date?: Date | string) => {
 		if (!date) return '-';
@@ -54,7 +69,7 @@ export default function NewsTableRow({
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							className='text-destructive focus:text-destructive'
-							onClick={() => deleteNews(news._id!)}
+							onClick={handleDelete}
 						>
 							<Trash2 className='h-4 w-4 mr-2' />
 							Удалить

@@ -18,7 +18,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '../../components/ui/table';
-import { useGetNewsQuery } from '../../lib/store/newsApi';
+import { useNews } from '../NewsForm/api/useNewsApi';
 import { INews } from '../../types/News';
 import NewsForm from '../NewsForm/NewsForm';
 import NewsTableRow from './components/NewsTableRow';
@@ -27,7 +27,7 @@ export default function NewsTable() {
 	const [selectedNews, setSelectedNews] = useState<INews | null>(null);
 	const [open, setOpen] = useState(false);
 
-	const { data: news = [] } = useGetNewsQuery();
+	const { news, mutate } = useNews();
 
 	return (
 		<div>
@@ -81,7 +81,10 @@ export default function NewsTable() {
 					</DialogHeader>
 					<NewsForm
 						news={selectedNews ?? undefined}
-						onClose={() => setOpen(false)}
+						onClose={() => {
+							setOpen(false);
+							mutate();
+						}}
 					/>
 				</DialogContent>
 			</Dialog>
