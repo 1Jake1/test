@@ -120,3 +120,24 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+/* EditorJS styles */
+.codex-editor {
+	@apply text-foreground;
+}
+
+.codex-editor__redactor {
+	@apply pb-4;
+}
+
+.ce-block__content {
+	@apply max-w-full;
+}
+
+.ce-toolbar__content {
+	@apply max-w-full;
+}
+
+.ce-block {
+	@apply max-w-full;
+}
