@@ -8,6 +8,7 @@ import { useNewsForm } from './hooks/useNewsForm';
 import TitleField from './components/TitleField';
 import AuthorField from './components/AuthorField';
 import PublishedField from './components/PublishedField';
+import BannerField from './components/BannerField';
 import ContentField from './components/ContentField';
 
 interface NewsFormProps {
@@ -35,6 +36,8 @@ export default function NewsForm({ news, onClose }: NewsFormProps) {
 				<TitleField control={form.control} />
 				{/* @ts-ignore - react-hook-form types issue */}
 				<AuthorField control={form.control} />
+				{/* @ts-ignore - react-hook-form types issue */}
+				<BannerField control={form.control} />
 				{/* @ts-ignore - react-hook-form types issue */}
 				<PublishedField control={form.control} />
 				{/* @ts-ignore - react-hook-form types issue */}

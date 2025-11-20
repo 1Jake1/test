@@ -5,6 +5,7 @@ export const validationSchema = object({
 	title: string().required('Введите заголовок'),
 	content: object().optional(),
 	images: array().of(string()).optional().default([]),
+	banner: string().optional(),
 	author: string().optional(),
 	published: boolean().optional().default(false),
 });

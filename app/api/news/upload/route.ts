@@ -18,21 +18,21 @@ export async function POST(req: Request) {
 		const bytes = await file.arrayBuffer();
 		const buffer = Buffer.from(bytes);
 
-		// Создаем директорию uploads если её нет
-		const uploadsDir = join(process.cwd(), 'public', 'uploads');
-		if (!existsSync(uploadsDir)) {
-			await mkdir(uploadsDir, { recursive: true });
+		// Создаем директорию temp если её нет
+		const tempDir = join(process.cwd(), 'public', 'temp');
+		if (!existsSync(tempDir)) {
+			await mkdir(tempDir, { recursive: true });
 		}
 
 		// Генерируем уникальное имя файла
 		const timestamp = Date.now();
 		const filename = `${timestamp}-${file.name}`;
-		const filepath = join(uploadsDir, filename);
+		const filepath = join(tempDir, filename);
 
 		await writeFile(filepath, buffer);
 
 		// Возвращаем URL для доступа к файлу
-		const url = `/uploads/${filename}`;
+		const url = `/temp/${filename}`;
 
 		return NextResponse.json({ url });
 	} catch (error) {

@@ -28,6 +28,7 @@ export const useNewsForm = ({
 			title: '',
 			content: EDITOR_DEFAULT_DATA,
 			images: [],
+			banner: '',
 			author: '',
 			published: false,
 		},
